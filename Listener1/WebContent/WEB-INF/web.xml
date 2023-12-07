@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>Listener1</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 配置ServletContextListener....(注意:只需要告诉Tomcat那个类是监听器就是了) -->
+  <listener>
+  	<listener-class>org.lanqiao.object.listener.MyServletContextListener</listener-class>
+  </listener>
+  
+  <!-- ServletRequestListener.... -->
+  <listener>
+  	<listener-class>org.lanqiao.object.listener.MyServletRequestListener</listener-class>
+  </listener>
+  
+  <!-- HttpSessionListener.... -->
+  <listener>
+  	<listener-class>org.lanqiao.object.listener.MyHttpSessionListener</listener-class>
+  </listener>
+  
+  
+  <!-- application/ServletContext域中属性状态的变化(添加、删除、替换) -->
+  <listener>
+  	<listener-class>org.lanqiao.javabean_attr.listener.MyservletContextAttributeListener</listener-class>
+  </listener>
+</web-app>

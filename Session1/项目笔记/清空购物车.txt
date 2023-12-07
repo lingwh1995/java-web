@@ -1,0 +1,8 @@
+清空购物车:
+	思路1:将购物车移除
+	思路2:将session干掉
+步骤分析:
+	在cart.jsp上添加一个超链接 清空购物车
+		<a href="/day1101/clearCart">清空购物车</a>
+	在clearCart中需要调用session.invalidate()
+	重定向到购物车页面

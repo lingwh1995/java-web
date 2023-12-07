@@ -1,0 +1,23 @@
+1.pageContext作用:理解
+	1.域对象
+		xxxAttribute()
+	2.操作其他域对象
+		方法:
+		xxxAttribute(...,int scope);
+		scope取值:
+		APPLICATION_SCOPE 
+		SESSION_SCOPE 
+		REQUEST_SCOPE 
+		PAGE_SCOPE 
+	3.获取其他的内置对象
+		getXxx()
+		注意:
+			getRequest():获取request内置对象
+	4.便捷查找,
+		findAttribute(String key):
+		依次从pagecontext,request,session,application四个域中,查找相应的属性,若查找到了返回值,且结束该次查找
+		若查找不到,返回一个null
+2.pageContext和page
+	1.pageContext和page都属于JSP九大内置对象之一
+	2.可以通过pageContext对象获取page对象和其他对象
+	3.pageContext代表作用域是当前页面,page代表当前页面,即page代表this

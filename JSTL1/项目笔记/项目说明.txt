@@ -1,0 +1,5 @@
+1.JSTL标签
+2.JSTL函数库
+3.获取项目路径的两种方法:
+	①JSTL:<c:url value="/文件名"/>
+	②EL:${pageContext.request.contextPath }

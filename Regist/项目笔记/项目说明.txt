@@ -1,0 +1,2 @@
+1.演示HttpRequest的常用方法
+2.使用beanUtils把页面传来的数据封装成一个对象

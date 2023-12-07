@@ -1,0 +1,25 @@
+filter总结
+	filterConfig:(了解)
+		过滤器的配置对象
+		作用:
+			获取全局管理者
+			获取当前filter的名称
+			获取当前filter的初始化参数
+	
+	filter-mapping的子标签(理解)
+		servlet-name:匹配那个servlet 值写的是serlvet标签中servlet-name的值
+			建议:不要在一个filter中重复的匹配servlet
+				例如: serlvet的url-pattern为  /a/b/hello   serlvetname:HelloServlet
+					如果filter中的url-pattern  /*
+					最好不要在写 servlet-name:HelloServlet
+				
+		dispatcher:
+			匹配哪种请求
+			默认的是REQUEST,一旦显式的写出来哪种请求,默认就不起作用了
+				理解
+					REQUEST:从浏览器发送过来的请求(默认) 理解
+					FORWARD:转发过来的请求 理解
+				
+				了解
+					ERROR:因服务器错误而发送过来的请求
+					INCLUDE:包含过来的请求

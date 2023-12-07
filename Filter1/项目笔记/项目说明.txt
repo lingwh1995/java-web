@@ -1,0 +1,25 @@
+1.过滤器入门	
+2.如果多个过滤器都匹配的是一个Servlet,过滤器执行的顺序
+	过滤器执行的顺序取决于<filter-mapping></filter-mapping>这个标签在we.xml中配置的顺序,哪个过滤器的<filter-mapping></filter-mapping>
+	配置在上面,就先执行那个过滤器
+3.filter:单实例多线程,项目(服务器)启动的时候就创建了
+4.获取filter的初始化参数
+5.注意:
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain){}
+	这个方法中的request是ServletRequest,不是HttpServeletRequest,使用需要强制转换数据类型
+			 response是ServletResponse,不是HttpServletResponse,使用需要强制转换数据类型
+6.过滤器拦截的四种方式:(配置在Filter-mapping标签中)
+	请求:<dispatcher>REQUEST</dispatcher>
+	转发:<dispatcher>FORWARD</dispatcher>
+	包含:<dispatcher>INCLUDE</dispatcher>
+	错误:<dispatcher>ERROR</dispatcher>
+7.过滤器也可以拦截指定名称的servlet,如:
+	<filter-mapping>
+		<servlet-name>xxxServlet</servlet-name>
+		<servlet-name>yyyServlet</servlet-name>
+	</filter-mapping>
+	而且一个过滤器可以拦截多个servlet,并非只能拦截一个servlet,只需要配置:<servlet-name>yyyServlet</servlet-name>这个标签即可
+	 
+    
+    
+    

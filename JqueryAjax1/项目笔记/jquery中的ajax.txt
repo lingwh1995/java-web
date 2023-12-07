@@ -1,0 +1,27 @@
+1.jquery中的四种ajax
+	1.对象.load(url,params,function(数据){},type)----请求方式为get请求
+	2.$.get(url,params,function(数据){},type)
+		url:请求的路径
+		params:请求的参数 参数以key--value的形式,key==value	{"key1":"value1","key2":"value2"}
+		function:回调函数
+		type:返回内容的格式:xml、html、script、json、text、_default
+	3.$.post(url,params,function(数据){},type)
+		url:请求的路径
+		params:请求的参数 参数以key--value的形式,key==value	{"key1":"value1","key2":"value2"}
+		function:回调函数
+		type:返回内容的格式:xml、html、script、json、text、_default
+	4.$ajax([选项])
+		选项的可选值:
+			url:地址
+			type:请求方法
+			data:发送到服务器的数据
+			success:function 成功以后的回调
+			error:function 异常之后的回调
+			dataType:返回的内容格式,常用的是json
+			async:设置是否为异步,默认为异步请求
+2.$代表全局
+3.load()方法的注意事项:(参数的两种形式:普通形式和json形式)
+	1.参数的两种形式:普通形式和json形式
+	2.若参数为形式1,则load()方法的请求方式为get方法,若参数为json形式,则load()方法的请求方式为post，也就是说,load()方法的请求方式是随着参数形式的不同而改变的
+4.将用户回传的数据转换为json格式,在回调函数中设置接受数据的格式
+				    

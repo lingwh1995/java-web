@@ -1,0 +1,8 @@
+1.显示所有商品
+2.CRUD操作
+3.appache的dbutils使用
+4.使用beanUtils封装来自页面中表单的数据(把数据先封装到一个map中)
+5.解决表单数据重复提交的两种方式
+	重定向和令牌机制:本项目演示令牌机制
+6.jsp动作标签  	jsp:useBean
+	<jsp:useBean id="utils" class="org.lanqiao.utils.CommonUtils"></jsp:useBean>

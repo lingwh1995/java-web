@@ -1,0 +1,69 @@
+jstl:
+	jsp标准的标签库语言
+	apache的
+	用来替代java脚本
+	使用步骤:
+		1.导入jar包 (jstl.jar和standard.jar)
+		2.在页面上导入标签库
+			<%@taglib prefix="" uri=""%>
+			
+			例如:
+				<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	jstl的分类:
+		core:核心类库 ★
+		fmt:格式化|国际化
+		xml:过时了
+		sql:过时了
+		函数库:很少使用
+	core:掌握
+		★c:if
+		★c:forEach
+		
+		c:set 往域中设置值
+		c:choose c:when c:otherwise 分支
+		
+	★c:if 判断
+		<c:if test="${el表达式}">满足的时候输出的内容</c:if>
+		例如:
+			<c:if test="${3>4 }">
+				3大于4
+			</c:if>
+			<c:if test="${3<=4 }">
+				3不大于4
+			</c:if>
+			//////////////
+	★c:forEach 循环
+		格式1:
+			 <c:forEach begin="从那里开始" end="到那里结束" step="步长" var="给变量起个名字" varStatus="循环状态变量">
+				${i }--${vs.count }--${vs.current }<br>
+			 </c:forEach>
+			 
+			varStatus:用来记录循环的状态
+				常用的属性:
+					count:记录次数
+					current:当前遍历的内容
+		例如:
+			<c:forEach begin="1" end="20" step="2" var="i" varStatus="vs">
+				${i }--${vs.count }--${vs.current }<br>
+			</c:forEach>
+		
+		格式2:
+			<c:forEach items="${el获取域中的容器}" var="n">
+				${n }
+			</c:forEach>
+			
+			例如:
+				//遍历list
+				<c:forEach items="${list }" var="n">
+					${n }
+				</c:forEach>
+				
+				//遍历map
+				 <c:forEach items="${map }" var="en">
+					${en.key }-- ${en.value }<br/>
+				  </c:forEach>
+		
+扩展:
+	c:set 和 c:choose
+	函数库:
+//////////////////////////

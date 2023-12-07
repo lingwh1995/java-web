@@ -1,0 +1,16 @@
+步骤分析:
+	1.数据库和表
+	2.新建一个项目 day1301
+	3.导入jar包和工具类
+		驱动 jdbcUtils
+		c3p0及其配置文件和工具类
+		dbutils
+	4.新建一个account.jsp 表单
+	5.accountservlet:
+		接受三个参数
+		调用accountservice.account方法完成转账操作
+		打印信息
+	6.account方法中:
+		使用jdbc不考虑事务
+		调用dao完成转出操作
+		调用dao完成转入操作

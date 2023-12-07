@@ -1,0 +1,17 @@
+1.显示所有商品
+2.CRUD操作+带有弹出窗口的删除+删除多个商品(删除选中的商品,选中3个删除3个,选中4个删除4个)+多条件组件组合查询(内含模糊查询)
+3.分页
+4.appache的dbutils使用
+5.使用beanUtils封装来自页面中表单的数据(把数据先封装到一个map中)
+	如果JavaBean中有5个属性,表单中只传过来四个,最后一个数据使用如下方法来封装进JavaBean中(调用对象的setXXX()方法):
+	Product product = new Product();
+	//封装表单中传递过来的数据到JavaBean中 
+	BeanUtils.populate(product, request.getParameterMap());
+	//封装表单中没有传递过来的数据到JavaBean中 
+	product.setPid(CommonUtils.getId());
+	product.setPdate(new Date());
+6.解决表单数据重复提交的两种方式
+	重定向和令牌机制:本项目演示重定向
+7.jsp动作标签  	jsp:useBean
+	<jsp:useBean id="utils" class="org.lanqiao.utils.CommonUtils"></jsp:useBean>
+8.JSP获取多个checkbox传递过来的值

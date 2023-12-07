@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<meta http-equiv="refresh" content="3;url=/Login/refresh2.html">
+	<script type="text/javascript">
+		window.onload = function(){
+			setInterval("change()",1000);
+		}	
+		var i = 3;
+		function change() {
+			var sp = document.getElementById("sp");
+			sp.innerHTML = i;
+			i--;
+		}
+	</script>
+</head>
+<body>
+	<!-- 倒计时使用JS代码实现 -->
+	xxx成功了,<span id="sp"></span>秒后跳转到refresh2.html中.
+</body>
+</html>

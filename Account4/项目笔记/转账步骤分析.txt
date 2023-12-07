@@ -1,0 +1,31 @@
+步骤分析:
+	1.数据库和表
+	2.新建一个项目 day1301
+	3.导入jar包和工具类
+		驱动 jdbcUtils
+		c3p0及其配置文件和工具类
+		dbutils
+	4.新建一个account.jsp 表单
+	5.accountservlet:
+		接受三个参数
+		调用accountservice.account方法完成转账操作
+		打印信息
+	6.account方法中:
+		使用jdbc不考虑事务
+		调用dao完成转出操作
+		调用dao完成转入操作
+	7.dao中
+			
+	一旦出现异常,钱飞了.
+	要想避免这事情,必须添加事务,在service添加事务.
+	为了保证所有的操作在一个事务中,必须保证使用的是同一个连接
+	在service层我们获取了连接,开启了事务.如何dao层使用此连接呢????
+		方法1:
+			给dao层的connection设置一个getXXX()方法(一般设置为只读方法,安全),其他层使用的时候通过这个方法获取dao层中的connection
+		方法2:
+			向下传递参数.注意连接应该在service释放
+		方法3:
+			可以将connection对象绑定当前线程上
+			jdk中有一个ThreadLocal类,
+			ThreadLocal 实例通常是类中的 private static 字段，
+			它们希望将状态与某一个线程（例如，用户 ID 或事务 ID）相关联。 

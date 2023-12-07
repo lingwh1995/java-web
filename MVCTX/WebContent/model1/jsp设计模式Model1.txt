@@ -1,0 +1,10 @@
+jsp设计模式1 model1:(了解)
+	model1:javabean+jsp,项目中不使用三层来分层工作，所有的工作的都在jsp中完成
+	javabean在model1使用(了解)
+		<!-- 接受值 -->
+		<jsp:useBean id="u" class="com.itheima.domain.User"></jsp:useBean><!--相当于  User u=new User()-->
+		<jsp:setProperty property="name" name="u"/><!--相当于  u.setName(...)-->
+		<jsp:setProperty property="password" name="u"/>
+
+		<!-- 打印值-->
+		<jsp:getProperty property="name" name="u"/>

@@ -1,0 +1,40 @@
+事务:
+	就是一件完整的事情,包含多个操作单元,这些操作要么全部成功,要么全部失败.
+	例如:转账
+		包含转出操作和转入操作.
+	mysql中的事务:
+		mysql中事务默认是自动提交,一条sql语句就是一个事务.
+		开启手动事务方式
+			方式1:关闭自动事务.(了解)
+				set autocommit = off;
+			方式2:手动开启一个事务.(理解)
+				start transaction;-- 开启一个事务
+				commit;-- 事务提交
+				rollback;-- 事务回滚
+		扩展:
+			oracle中事务默认是手动的,必须手动提交才可以.
+		
+		例如:创建数据库和表
+			create database day13;
+			use day13;
+			create table account(
+				name varchar(20),
+				money int
+			);
+			
+			insert into account values('aa','1000');
+			insert into account values('bb','1000');
+			
+		完成 aa给bb转500;
+			update account set money = money - 500 where name='aa';
+			update account set money = money + 500 where name='bb';
+		////////////////////
+	java中的事务:
+		Connection接口的api:★
+			setAutoCommit(false);//手动开启事务
+			commit():事务提交
+			rollback():事务回滚
+		
+		扩展:了解 Savepoint还原点
+			void rollback(Savepoint savepoint) :还原到那个还原点
+			Savepoint setSavepoint() :设置还原点

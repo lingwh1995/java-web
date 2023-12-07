@@ -1,0 +1,18 @@
+1.解决全站乱码问题
+	servlet：
+	POST：request.setCharacterEncoding(“utf-8”);
+	GET：
+	String username = request.getParameter(“username”);
+	username = new String(username.getBytes(“ISO-8859-1”), “utf-8”);
+
+
+
+1　说明
+乱码问题：
+	获取请求参数中的乱码问题；
+	POST请求：request.setCharacterEncoding(“utf-8”)；
+	GET请求：new String(request.getParameter(“xxx”).getBytes(“iso-8859-1”), “utf-8”)；
+	响应的乱码问题：response.setContextType(“text/html;charset=utf-8”)。
+
+　　基本上在每个Servlet中都要处理乱码问题，所以应该把这个工作放到过滤器中来完成。
+	

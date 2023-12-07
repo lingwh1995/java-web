@@ -1,0 +1,7 @@
+本项目演示Appache公共类的dbutils的使用
+
+1.演示使用两种外部配置文件获取c3p0配置信息:
+	①xml文件方式
+	②properties文件方式
+2.具有基本功能的DataSourceUtils的封装,不支持事务。
+	

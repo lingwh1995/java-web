@@ -1,0 +1,1 @@
+1.Appache公共类库BeanUtils封装数据

@@ -1,0 +1,22 @@
+1.粒度权限管理
+	RBAC  基于角色的权限控制
+	tb_user
+	tb_role
+	tb_userrole
+	tb_menu(增、删、改、查)
+	tb_rolemenu
+
+	1　说明
+		我们给出三个页面：index.jsp、user.jsp、admin.jsp。
+			index.jsp：谁都可以访问，没有限制；
+			user.jsp：只有登录用户才能访问；
+			admin.jsp：只有管理员才能访问。
+	
+	2　分析
+		设计User类：username、password、grade，其中grade表示用户等级，1表示普通用户，2表示管理员用户。
+		当用户登录成功后，把user保存到session中。
+		创建LoginFilter，它有两种过滤方式：
+			如果访问的是user.jsp，查看session中是否存在user；
+			如果访问的是admin.jsp，查看session中是否存在user，并且user的grade等于2。
+
+	

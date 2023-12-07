@@ -1,0 +1,23 @@
+反射:
+	1.获取class对象
+		方式1:
+			Class clazz=Class.forName("全限定名")
+		方式2:
+			Class clazz=类名.class;
+		方式3:
+			Class clazz=对象.getClass;
+	2.可以获取对应类的构造方法(了解)
+		Constructor con = clazz.getConstructor(Class .. paramClass);
+		Person p = (Person) con.newInstance(参数);
+	3.可以通过clazz创建一个对象(了解)
+		clazz.newInstance();//相当于调用的无参构造器
+	4.可以通过clazz获取所有的字段 getFiled()(了解中的了解)
+	5.可以通过clazz获取所有的方法
+		Method m = clazz.getMethod("sleep");//获取公共的方法
+		Method m = clazz.getDeclaredMethod("sleep");//获取任意的方法
+		
+		注意:若是私有的方法 必须让该方法可以访问
+			m.setAccessible(true);
+	6.Method对象的invoke是有返回值,他的返回值就是目标方法执行的返回值
+总结:
+	有了class对象之后,无所不能.

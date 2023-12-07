@@ -1,0 +1,8 @@
+1.JSP动作标签
+	jsp:forward
+	jsp:include
+2.JSP页面跳转的时候传递参数
+3.errorPage的使用
+4.JSP静态包含和动态包含
+	静态包含:<%@ include file="lo.jsp" %>
+	动态包含:<jsp:include page="b.jsp"/>

@@ -1,0 +1,83 @@
+分页展示商品
+需求:
+	将商品进行分页展示
+技术分析:
+	分页
+///////////////////////////
+分页:
+	将数据按照页码划分,提高用户的体验度.
+分类:
+	物理分页:(开发中经常使用)
+		一次只去数据库中查询当前页需要的数据.
+	逻辑分页:
+		一次性将所有数据查询出来,放入内存(集合),每次查询只需要去内存中截取
+mysql中分页:
+	limit 
+	格式1:
+		select ....  limit m,n;
+		从索引为m条开始向后查找n条数据
+		就是从第m+1条 到 第m+n条  []
+	格式2:
+		select .... limit n;
+		等价于:select .... limit 0,n;
+		
+	每页显示3条数据 
+		第一页 		limit 0,3
+		第二页 		limit 3,3
+		第三页 		limit 6,3
+		第n页 		limit (n-1)*3,3
+	
+	扩展:
+		oracle中 rownum
+		sqlserver中 top
+/////////////////////////////////
+	每一页需要的数据有
+		当前页内容	limit查询 
+		当前页码    从前台传递过去
+		每页显示的条数 固定
+		总条数		count(*)
+		总页数		总条数/每页显示的条数 Math.ceil(double)
+	以后开发中一般会将这5个参数封装一个javabean(PageBean)
+		private List<T> list;//当前页内容	 	查询
+		private int currPage;//当前页码 	 	传递
+		private int pageSize;//每页显示的条数	固定
+		private int totalCount;//总条数			查询
+		private int totalPage;//总页数			计算
+		
+/////////////////////////////////
+步骤分析:
+	最终结果:
+		[首页][上一页][下一页][尾页]
+		[首页][上一页]x x x[下一页][尾页]
+		
+	1.创建一个页面 product_page.jsp
+		有上面的内容
+		还需要有当前页的数据
+	2.在首页上有一个超链接,点击超链接将第一页查询出来
+		<a href="/day14/showProductsByPage?currPage=1">分页展示商品</a>
+	3.showProductsByPage
+		获取第几页
+		调用service 完成查询操作,返回值:pagebean
+		将pagebean放入request域中,请求转发product_page.jsp
+		
+	4.service.showProductsByPage
+		返回值pagebean
+		查询当前页的数据
+		查询出总条数
+	////////////////////////////////////
+	在页面上展示
+		1.展示当前也数据 
+			通过<c:forEach items="${pb.list}">
+		2.添加首页 上一页 ....的超链接
+		3.判断是否是第一页.若是第一页 不展示首页和上一页
+		4.判断是否是最后一页 若是最后一页 不展示尾页和下一页
+		5.展示所有页码
+			<c:forEach begin='1' end="${pb.totalPage}">
+		6.判断是否是当前页
+			若是当前页 不加超链接
+			若不是当前页 添加超链接
+			
+	扩展:页面多的时候 采用前五后四的方式
+		只需要控制begin和end
+		begin 判断当前页-5>0?当前页-5:1
+		end 判断 当前页+4>总页数?总页数:当前页+4

@@ -1,0 +1,13 @@
+create database user;
+use user;
+create table user(
+	id int primary key auto_increment,
+	username varchar(20),
+	password varchar(20),
+	email varchar(20),
+	name varchar(20),
+	sex varchar(10),
+	birthday date,
+	hobby varchar(50)
+);
+	insert into user values (null,'tom','123','tom@126.com','tom','1','1988-01-01',null);

@@ -1,0 +1,25 @@
+1.Filer实现自动登录功能
+2.比较常量和变量是相等的时候,把常量放在equals()前面,可以避免空指针异常的发生
+3.将Cookie写回到浏览器要设置的几个属性
+		Cookie cookie = new Cookie("autologin",username+"-"+password);
+		
+		//将Cookie写回到浏览器要设置的几个属性
+		cookie.setMaxAge(3600);//生命时长
+		cookie.setPath(request.getContextPath()+"/");//Cookie路径
+		response.addCookie(cookie);//写回到浏览器
+4.重定向和转发都将可以携带Cookie到浏览器
+5.CookieUtils工具类的使用
+6.Cookie不支持中文,所以当用户名含有中文的时候,把中文写入到Cookie中的时候,就会报异常,所以需要先将汉字编码,然后再存入Cookie中
+7.使用EL表达式获取名为savename的cookie的值:${cookie.savename.value }
+8.Servlet中URLEncoder的使用+Html/JSP页面中使用js进行中文解码
+9.JavaScript中使用EL表达式时,EL表达式要用双印号包起来,否则是无效的,演示正确写法如下:
+	<script type="text/javascript">
+		window.onload = function(){
+			//以UTF-8编码解码后台传过来的汉字
+			var s = "${cookie.savename.value }";
+			s = decodeURI(s);
+			alert(s);
+		}
+	</script>
+10.记住用户名和自动登录功能的实现
+11.自动登录-服务器 统一错误页面,如404错误页面、500错误页面

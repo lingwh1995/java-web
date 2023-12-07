@@ -1,0 +1,71 @@
+request:请求
+	作用:获取浏览器发送过来的数据
+	组成部分:
+		请求行 请求头 请求体
+	操作请求行 
+		格式:
+			请求方式 请求资源 协议/版本
+		常用方法:HttpServletRequest
+			掌握
+				String getMethod():获取请求方式
+				String getRemoteAddr():获取ip地址
+				String getContextPath() :在java中获取项目名称  (/day10)
+ 
+			
+			了解:
+				getRequestURI():获取的是 从项目名到参数之前的内容  /day10/regist
+				getRequestURL():获取的带协议的完整路径   http://localhost/day10/regist
+				String getQueryString():get请求的所有参数   username=tom&password=123
+				String getProtocol():获取协议和版本
+				
+		例如:请求行
+			GET /day10/row?username=tom&password=123 HTTP/1.1
+		//////////////////		
+	操作请求头 
+		格式:key/value(value可以是多个值)
+		常用方法:
+			★String getHeader(String key):通过key获取指定的value (一个)
+			
+			了解:
+				Enumeration getHeaders(String name) :通过key获取指定的value(多个)
+				Enumeration getHeaderNames() :获取所有的请求头的名称
+				int getIntHeader(String key):获取整型的请求头
+				long getDateHeader(String key):获取时间的请求头
+		重要的请求头:
+			user-agent:浏览器内核 msie firefox chrome
+			referer:页面从那里来 防盗链
+ 
+		///////////////////
+	操作请求参数 ★
+		username=tom&password=123&hobby=drink&hobby=sleep
+		常用方法:
+			String getParameter(String key):获取一个值
+			String[] getParameterValues(String key):通过一个key获取多个值
+			Map<String,String[]> getParameterMap():获取所有的参数名称和值
+			
+			
+		username:tom
+		---------values---------
+		hobby:[drink, sleep]
+		=====map=======
+		username::[tom]
+		password::[123]
+		hobby::[drink, sleep]
+	//////////////////////
+	请求的中文乱码:
+		对于get请求:参数追加到地址栏,会使用utf-8编码,服务器(tomcat7)接受到请求之后,使用iso-8859-1解码,所以会出现乱码
+		对于post请求,参数是放在请求体中,服务器获取请求体的时候使用iso-8859-1解码,也会出现乱码
+		
+		通用的方法:
+			new String(参数.getBytes("iso-8859-1"),"utf-8");
+		针对于post请求来说:只需要将请求流的编码设置成utf-8即可
+			request.setCharacterEncoding("utf-8");
+/////////////////////////////////////////////////////////////
+域对象:
+	request:
+		创建:一次请求来的时候
+		销毁:响应生成的时候
+		作用:
+			一次请求里面的数据
+		请求转发(请求链,请求串)
+			request.getRequestDispatcher("内部路径").forward(request,response);

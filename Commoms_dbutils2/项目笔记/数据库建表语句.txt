@@ -1,0 +1,10 @@
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`mydb1` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `mydb1`;
+
+CREATE TABLE `user` (
+  `USERNAME` varchar(20) DEFAULT NULL,
+  `PASSWORD` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert  into `user`(`USERNAME`,`PASSWORD`) values ('ls','123'),('uypdate','15'),('uypdate','15'),('c201','20'),('c201','20'),('c201','20'),('c201','20'),('修改后的username','修改后的password'),('修改后的username','修改后的password');

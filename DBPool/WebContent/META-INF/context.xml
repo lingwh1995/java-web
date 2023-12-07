@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<Resource name="jdbc/emp" auth="Container" type="javax.sql.DataSource"
+	    url="jdbc:oracle:thin:@localhost:1521:orcl" 
+	    username="scott" password="tiger"
+	    driverClassName="oracle.jdbc.driver.OracleDriver"
+	    maxActive="100" maxIdle="20"  maxWait="30000">
+	</Resource>
+</Context>
+<!-- <Context>
+	<Resource name="jdbc/emp" auth="Container" type="javax.sql.Database"
+			  url="jdbc:oracle:thin:@localhost:1521:orcl"
+			  username="scott" password="tiger"
+			  driverClassName="oracle:.jdbc.driver.OracleDriver"
+			  maxActive="100" maxIdle="20" maxWait="30000">
+	</Resource>
+</Context> -->

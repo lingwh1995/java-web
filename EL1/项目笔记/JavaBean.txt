@@ -1,0 +1,16 @@
+1.javabean导航
+	javabean:
+		java语言编写的一个可重用的组件,
+		狭义上来说就是我们编写的一个普通的java类 例如:User Person 
+		javabean规范:
+			1.必须是一个公共的具体的类  public class
+			2.提供私有的字段  private String id;//id称之为字段
+			3.提供公共访问字段的方法 get|set|is方法
+				public String getId(){..}
+				一旦有公共的方法之后,get|set|is之后的内容,将首字母小写,将这个东西称之为bean属性
+				id就是一个bean属性
+			4.提供一个无参的构造器
+			5.一般实现序列化接口  serializable
+	注意:
+		${域中javabean名称.bean属性}而不是:${域中javabean名称.bean字段},因为一个JavaBean中的属性和字段是不同的
+		

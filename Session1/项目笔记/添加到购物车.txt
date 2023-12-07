@@ -1,0 +1,63 @@
+需求:
+	在商品详情页面有一个添加到购物车,点击则将该商品添加到购物车,点击购物车连接将里面的所有商品展示出来
+技术分析:
+	session
+//////////////
+session:
+	服务器端会话技术.
+	当我们第一次访问的服务器的时候,服务器获取id,
+		能获取id
+			要拿着这个id去服务器中查找有无此session
+				若查找到了:直接拿过来时候,将数据保存,需要将当前sessin的id返回给浏览器
+				若查找不到:创建一个session,将你的数据保存到这个session中,将当前session的id返回给浏览器
+		不能获取id
+			创建一个session,将你的数据保存到这个session中,将当前session的id返回给浏览器
+	
+	获取一个session:
+		HttpSession  request.getSession()
+	
+	域对象:
+		xxxAttribute
+		生命周期:
+			创建:第一次调用request.getsession()创建
+			销毁:
+				服务器非正常关闭
+				session超时
+					默认时间超时:30分钟  web.xml有配置 
+					手动设置超时:setMaxInactiveInterval(int 秒) 了解
+				手动干掉session
+					★session.invalidate()
+		存放的私有的数据.
+////////////////////////////////
+步骤分析:
+	1.点击添加到购物车的时候,提交到一个servlet add2CartServlet
+		需要将商品名称携带过去
+	2.add2CartServlet中的操作
+		获取商品的名称
+		将商品添加到购物车 购物车的结构 Map<String 名称,Integer 购买数量>
+			将购物车放入session中就可以了
+		
+		将商品添加到购物车分析:
+			获取购物车
+			判断购物车是否为空
+				若为空:
+					第一次添加
+					创建一个购物车
+					将当前商品put进去.数量:1
+					将购物车放入session中
+				若不为空:继续判断购物车中是否有该商品
+					若有:
+						取出count 将数量+1 
+						将商品再次放入购物车中
+					若没有:
+						将当前商品put进去 数量:1
+					
+		提示信息:你的xx已添加到购物车中
+	
+	
+	3.点击购物车连接的时候 cart.jsp
+		从session获取购物车
+			判断购物车是否为空
+				若为空:提示信息
+				若不为空:遍历购物车即可
+			

@@ -1,0 +1,17 @@
+初始化数据库:
+	create database account;
+	use account;
+	create table account(
+		name varchar(20),
+		money int
+	);
+	insert into account values("aa",10000);
+	insert into account values("bb",10000);
+
+完成aa转账500给bb操作:
+	start transaction;--开启事物
+	update account set money = (money-500) where name='aa';
+	update account set money = (money+500) where name='bb';
+	
+	rollback;--表示回滚之前操作
+	commit; --表示提交之前操作

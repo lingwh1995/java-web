@@ -1,0 +1,21 @@
+注意:本项目没有使用过C3P0连接池,已经对JdbcUtils做了最大程度的优化
+
+1.JDBC规范化代码
+2.JdbcUtils小工具基础版本(无外部连接信息配置文件、无静态代码块)-->JDBCUtilsv1.java
+3.JdbcUtils小工具高级版(外部连接信息配置文件+静态代码块)--JDBCUtilsv2.java+jdbc.properties(连接信息配置文件)
+4.把查询到的数据封装到JavBean中(两种方式)
+	方式一:不使用泛型,直接使用set方法进行封装
+		rs = ps.executeQuery();
+			/**
+			 * 把数据封装到JavaBean中
+			 */
+			User user = new User();
+			if(rs.next()){
+				user.setUsername(rs.getString("username"));
+				user.setPassword(rs.getString("password"));
+			}
+	方式二:使用泛型进行数据的封装
+		1.创建一个QR对象,实现Commons-Dubtils的功能
+		2.把查询的结果ResultSet封装成一个JavaBean
+5.使用ThreadLocal为JdbcUtils添加事务功能
+		

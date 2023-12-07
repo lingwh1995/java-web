@@ -1,0 +1,45 @@
+Listener:监听器
+	作用:
+		监听JavaWeb中的域对象(三个域对象):ServletContext、ServletRequest、HttpSession
+	监听内容(监听这三个对象的生命周期):
+		①监听三个对象的创建和销毁
+		②监听三个对象属性的变化
+		③监听Session中的javabean的状态
+	注意:
+		1.Listener全是接口
+		2.Listener作为JavaWeb三大组件,和Servlet一样都要在web.xml中配置
+	
+	
+	
+	
+	
+	
+	监听三个对象的创建和销毁
+		ServletContextListener
+			创建:服务器启动的时候,会为每一个项目都创建一个servletContext
+			销毁:服务器关闭或者项目被移除的时候,ServleContext就会被移除
+		ServletRequestListener
+			创建:请求来的时候
+			销毁:响应生成的时候
+		HttpSessionListener
+			创建(两种情况):
+				①java中第一次调用request.getSession的时候
+				②jsp中第一次访问jsp的时候(因为session为jsp的9大内置对象之一)
+			销毁(三种情况):
+				①session超时
+				②手动销毁session
+				③服务器非正常关闭
+	监听三个对象属性的变化(添加属性、删除属性、替换属性)
+		ServletContextAttributeListener(以这个为例,其他两个类似  )
+		ServletRequestAttributeListener
+		HttpSessionAttributeListener
+	监听session中的Javabean的状态
+	
+		HttpSessionActivaionListener	---->监听JavaBean钝化或者活化(钝化:javabean从session中持久化(序列化)到硬盘上,活化:javabean从硬盘上加载session中)
+			(注意:这个需要JavaBean去感知,不需要编写配置文件)
+			
+		HttpSessionBindingListener	---->监听JavaBean的绑定和解绑(绑定:把JavaBean放到Session中,解绑:把JavaBean从Session中移除)
+使用步骤:
+	1.编写一个类,实现接口(大部分都是)
+	2.重写方法
+	3.编写配置文件(大部分都是)

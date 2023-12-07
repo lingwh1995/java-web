@@ -1,0 +1,6 @@
+1.Appache的DButils的内部原理
+2.Appache公共类的dbutils的使用+原生的JDBC(有C3P0连接池)操作数据库
+	注意:JDBC设置参数从1开始,不是从0开始
+
+
+	

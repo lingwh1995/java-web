@@ -1,0 +1,47 @@
+事务的四大特征ACID:
+	原子性(Atomicity):事务里面的操作单元都是不可再切割的原子单位,事务中所有操作要么全部成功,要么全部失败.
+	一致性(Consistency):事务执行后,数据库状态与其业务状态保持一致。例如转账业务，无论事务执行成功与否，参与转账的两个账号余额之和应该是不变的.
+	隔离性(Isolation):是指在并发操作中，不同事务之间应该隔离开来,使每个并发中的事务不会相互干扰.
+	持久性(Durability):指的是一旦事务提交成功，事务中所有的数据操作都必须被持久化到数据库中,即使提交事务后，数据库马上崩溃，在数据库重启时，也必须能保证通过某种机制恢复数据。
+	
+	不考虑事务的隔离性会出现的读问题:
+	脏读:一个事务读取到了另一个事务未提交数据.
+	不可重复读:一个事务内，两次读取到的数据不一致(针对的是update操作).
+	虚读(幻读):两次读取的数据不一致(针对的是insert操作).
+	
+	通过设置数据库隔离级别(隔离级别总共有四种)来避免上面的问题:
+	Connection.TRANSACTION_READ_UNCOMMITTED		读未提交		上面的三个问题都会出现
+	Connection.TRANSACTION_READ_COMMITTED		读已提交		避免脏读的发生
+	Connection.TRANSACTION_REPEATABLE_READ 		可重复读		避免脏读和不可重读的发生
+	Connection.TRANSACTION_SERIALIZABLE			串行化		避免所有的问题
+	
+	了解
+		演示脏读的发生:
+			将数据库的隔离级别设置成 读未提交
+				set session transaction isolation level read uncommitted;
+			查看数据库的隔离级别
+				select @@tx_isolation;
+		避免脏读的发生,将隔离级别设置成  读已提交
+			set session transaction isolation level read committed;
+			不可避免不可重复读的发生.
+		
+		避免不可重复读的发生 经隔离级别设置成 可重复读
+			set session transaction isolation level  repeatable read;
+			
+		演示串行化 可以避免所有的问题
+			set session transaction isolation level  serializable;
+			锁表的操作.
+		
+	四种隔离级别的效率
+		read uncommitted>read committed>repeatable read>serializable
+	四种隔离级别的安全性
+		read uncommitted<read committed<repeatable read<serializable
+		
+	开发中绝对不允许脏读发生.
+		mysql中默认级别:repeatable read
+		oracle中默认级别:read committed
+
+	java中控制隔离级别:(了解)
+		Connection的api
+			void setTransactionIsolation(int level) 
+				level是常量

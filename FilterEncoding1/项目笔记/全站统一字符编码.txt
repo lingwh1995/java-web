@@ -1,0 +1,78 @@
+全站统一字符编码
+需求:
+	以前我们开发的时候若有参数,第一步都是设置编码,才不会出现乱码,通过过滤器设置,到servlet或者jsp上的时候已经没有乱码问题
+技术分析:
+	filter 配置路径/* 过滤器的第一个位置
+	在filter中重写getParameter(加强)
+步骤分析:
+	我们只需要在filter中 对request进行加强(例如:只对request.getParameter()进行加强)
+
+	方法加强:
+		1.继承(获取构造器)
+		2.装饰者模式(静态代理)
+		3.动态代理
+		
+	装饰者书写步骤:
+		1.要求装饰者和被装饰者实现同一个接口或者继承同一个类
+		2.装饰者中要有被装饰者的引用
+		3.对需要加强方法进行加强
+		4.对不需要加强的方法调用原来的方法即可
+		
+	加强request.getParameter(String key)
+		首先请求的方式不同,处理的方式也不同
+			获取请求的方法
+			若是get请求
+				new String(value.getBytes("iso8859-1"),"utf-8");
+			若是post请求
+				只需要设置一句话
+				request.setCharacterEncoding("utf-8");
+				
+	最后将包装过的request对象(MyRequest)传递给servlet即可
+///////////////////////////////////////////////////				
+///////////////////////////////////////////////////
+ 关于获取参数的方法
+	String getParameter(String name);// arr[0]
+	String[] getParameterValues(String name);// map.get(name)
+	Map<String,String[]> getParameterMap();
+			
+			
+
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+listener 监听器
+	监听javaweb中的三个域对象
+	
+	监听三个对象的创建和销毁
+		ServletContextListener
+		ServletRequestListener
+		HttpSessionListener
+	监听三个对象属性的变化
+		ServletContextAttributeListener
+		ServletRequestAttributeListener
+		HttpSessionAttributeListener
+	监听javabean在session中的状态
+		注意:	javabean实现的接口 不需要在web.xml中配置
+		HttpSessionActivationListener(javabean的活化和钝化)
+		HttpSessionBindingListener(添加到session中还是从session中移除)
+	
+	编写步骤:
+		1.编写一个类  实现接口
+		2.编写配置文件 
+			<listener>
+				<listener-class>....
+			</listener>
+/////////////////////////////////////
+filter 接口,过滤请求和响应
+	编写步骤:
+		1.编写一个类 
+			实现filter 重写三个方法
+		2.编写配置文件	
+			注册filter 绑定路径
+	filter的生命周期(了解)
+	url-pattern配置(和servlet一样)
+		一个路径匹配到多个filter的时候,执行顺序有有web.xml中filter-mapping的顺序来决定的
+	FilterChain
+		必须放行才有可能到下一个Filter或者资源上
+//////////////////////
+		
+	

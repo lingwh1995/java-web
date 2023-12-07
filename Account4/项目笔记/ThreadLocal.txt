@@ -1,0 +1,10 @@
+ThreadLocal的方法:
+		构造:
+			new ThreadLocal()
+		set(Object value):将内容和当前线程绑定
+		Object get():获取和迪昂前线程绑定的内容
+		remove():将当前线程和内容解绑
+	内部维护了map集合
+		map.put(当前线程,内容);
+		map.get(当前线程)
+		map.remove(当前线程)

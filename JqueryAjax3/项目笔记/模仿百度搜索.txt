@@ -1,0 +1,12 @@
+案例3-模仿百度搜索
+需求:
+	在一个文本框中输入一段内容,keyup的时候发送一个ajax请求,去数据库中查找相应的内容,在页面上展示
+步骤分析:
+	1.表
+		create table keyword(
+			id int primary key auto_increment,
+			kw varchar(20)
+		);
+	2.页面
+	3.在文本框输入内容 keyup的时候 发送ajax请求 将输入值传递到后台
+	4.将返回的数据展示

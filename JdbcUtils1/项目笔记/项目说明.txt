@@ -1,0 +1,1 @@
+1.使用classloader读取propertities文件中的内容

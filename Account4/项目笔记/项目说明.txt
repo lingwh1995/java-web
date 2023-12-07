@@ -1,0 +1,12 @@
+1.mysql中的事务和java中的事务
+2.带有事务控制的转账案例
+	①添加事务的详细步骤以及注意事项
+	②3种可以保证dao层和servies层使用是同一个connection
+		这个项目是演示方法一:把connection对象作为参数向下封装
+	注意:要在业务层添加事务控制,而不是其他层添加事务
+3.带有事务控制+ThreadLocal的DataSourceUtils
+4.DataSourceUtils的封装
+5.使用appache的dbutils完成带有事务的crud操作
+
+	
+	

@@ -1,0 +1,13 @@
+ 多条件查询 
+需求:
+	在product_list.jsp页面上添加一个表单,输入商品名称 和 关键词,点击确定,将符合条件的商品展示在当前页面上
+步骤分析:
+	在product_list.jsp页面上添加一个表单,添加一个查询按钮
+	提交的路径 findProductByCondition
+		1.获取两个条件
+		2.调用service完成查询 返回值:list
+		3.将list放入request域中,请求转发
+	productDao
+		基本sql:select * from product where 1=1:这样可以解决条件为空和where的冲突问题
+		若商品名称不为空 and pname like ...
+		若商品名不为空 and pdesc like ...

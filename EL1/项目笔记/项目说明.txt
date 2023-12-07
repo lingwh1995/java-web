@@ -1,0 +1,6 @@
+1.EL表达式
+	获取域中数据 
+	JavaBean和JavaBean导航
+	执行运算 
+	获取常见的web对象
+	调用java的方法		
